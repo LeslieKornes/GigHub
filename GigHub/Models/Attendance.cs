@@ -8,6 +8,7 @@ namespace GigHub.Models
         public Gig Gig { get; set; }
         public ApplicationUser Attendee { get; set; }
 
+        //THE FOLLOWING TWO PROPERTIES MAKE UP THE COMPOSITE KEY
         [Key]
         [Column(Order = 1)]
         public int GigId { get; set; }

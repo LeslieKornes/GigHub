@@ -30,6 +30,14 @@ textarea {
     font-weight: bold;
 }
 
+.vOffset { margin-top: 2px;}
+.vOffset1 { margin-top: 5px;}
+.vOffset2 { margin-top: 10px;}
+.vOffset3 { margin-top: 20px;}
+.vOffset4 { margin-top: 40px;}
+.vOffset5 { margin-top: 80px;}
+
+
 /*BOOTSTRAP OVERRIDES*/
 
 .navbar-inverse {
