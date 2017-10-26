@@ -1,4 +1,4 @@
-﻿namespace GigHub.Controllers.Api
+﻿namespace GigHub.Controllers.Dtos
 {
     public class UserDto
     {

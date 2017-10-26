@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using GigHub.Controllers.Dtos;
 
 namespace GigHub.Controllers.Api
 {
@@ -21,7 +22,7 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId)
+                .Where(un => un.UserId == userId && !un.IsRead)
                 .Select(un => un.Notification)
                 .Include(un => un.Gig.Artist)
                 .ToList();
