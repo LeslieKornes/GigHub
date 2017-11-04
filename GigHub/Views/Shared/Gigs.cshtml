@@ -32,42 +32,38 @@
             <div class="details">
                 <span class="artist">
                     <a href="@Url.Action("Details", "Gigs", new {id = gig.Id})">
-                    @gig.Artist.Name
+                        @gig.Artist.Name
                     </a>
+
                     @if (gig.IsCanceled)
                     {
                         <span class="label label-warning">CANCELED</span>
                     }
 
-                    @if (Model.ShowActions)
-                    {
-                        <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm pull-right js-toggle-follow">Follow</button>
-                    }
+                
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
-                    @if (Model.ShowActions && !gig.IsCanceled)
-                    {
-                        <button 
-                            data-gig-id="@gig.Id" 
-                            class="btn @(Model.Attendances.Contains(gig.Id) ? "btn-info" : "btn-default") 
-                                btn-sm pull-right js-toggle-attendance">
-                            Going?
-                        </button>
-                    }
-                </div>
-            </li>
-        }
+                @if (Model.ShowActions && !gig.IsCanceled)
+                {
+                    <button 
+                        data-gig-id="@gig.Id" 
+                        class="btn 
+                            @(Model.Attendances.Contains(gig.Id) ? "btn-info" : "btn-default") 
+                            btn-sm js-toggle-attendance">
+                        @(Model.Attendances.Contains(gig.Id)? "Going": "Going?")
+                    </button>
+                }
+            </div>
+        </li>
+    }
 </ul>
-
-
-
 @section scripts
 {
     <script>
         $(document).ready(function() {
             GigsController.init("#gigs");
-    });
+        });
     </script>
 }

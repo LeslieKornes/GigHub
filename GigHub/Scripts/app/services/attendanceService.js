@@ -15,7 +15,7 @@
     };
 
     return {
-        createAttendance: createAttendance(),
-        deleteAttendance: deleteAttendance()
+        createAttendance: createAttendance,
+        deleteAttendance: deleteAttendance
     };
 }();

@@ -1,4 +1,5 @@
-﻿var GigsController = function (attendanceService) {
+﻿
+var GigsController = function (attendanceService) {
     var button;
 
     var init = function (container) {
@@ -14,7 +15,6 @@
             attendanceService.createAttendance(gigId, done, fail);
         else
             attendanceService.deleteAttendance(gigId, done, fail);
-
     };
 
     var done = function () {
@@ -24,10 +24,11 @@
     };
 
     var fail = function () {
-        alert("Something failed!");
+        alert("Something failed");
     };
 
     return {
         init: init
     }
+
 }(AttendanceService);

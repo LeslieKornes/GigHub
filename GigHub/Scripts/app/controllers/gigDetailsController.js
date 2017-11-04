@@ -1,12 +1,12 @@
 ﻿
-var GigDetailsController = function(followingService) {
+var GigDetailsController = function (followingService) {
     var followButton;
 
-    var init = function() {
+    var init = function () {
         $(".js-toggle-follow").click(toggleFollowing);
     };
 
-    var toggleFollowing = function(e) {
+    var toggleFollowing = function (e) {
         followButton = $(e.target);
         var followeeId = followButton.attr("data-user-id");
 
@@ -16,16 +16,17 @@ var GigDetailsController = function(followingService) {
             followingService.deleteFollowing(followeeId, done, fail);
     };
 
-    var done function() {
-        var text = (followButton.text() == "Follow") ? "Following" : "Follow";
+    var done = function () {
+        var text = (followButton.text() === "Follow") ? "Following" : "Follow";
         followButton.toggleClass("btn-info").toggleClass("btn-default").text(text);
     };
 
-    var fail = function() {
-        alert("Something failed!");
+    var fail = function () {
+        alert("Something failed");
     };
 
     return {
         init: init
     }
+
 }(FollowingService);
