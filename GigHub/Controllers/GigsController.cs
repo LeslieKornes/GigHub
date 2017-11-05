@@ -9,13 +9,11 @@ namespace GigHub.Controllers
 {
     public class GigsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            _unitOfWork = new UnitOfWork(_context);
+            _unitOfWork = unitOfWork;
         }
 
         [Authorize]
@@ -73,7 +71,7 @@ namespace GigHub.Controllers
 
             var gigFormViewModel = new GigFormViewModel
             {
-                Genres = _context.Genres.ToList(),
+                Genres = new ApplicationDbContext().Genres.ToList(),
                 Date = gig.DateTime.ToString("d MMM yyyy"),
                 Time = gig.DateTime.ToString("HH:mm"),
                 Genre = gig.GenreId,
@@ -91,7 +89,7 @@ namespace GigHub.Controllers
         {
             if (!ModelState.IsValid)
             {
-                gigFormViewModel.Genres = _context.Genres.ToList();
+                gigFormViewModel.Genres = new ApplicationDbContext().Genres.ToList();
                 return View("GigForm", gigFormViewModel);
             }
 
@@ -117,7 +115,7 @@ namespace GigHub.Controllers
         {
             if (!ModelState.IsValid)
             {
-                gigFormViewModel.Genres = _context.Genres.ToList();
+                gigFormViewModel.Genres = new ApplicationDbContext().Genres.ToList();
                 return View("GigForm", gigFormViewModel);
             }
 
