@@ -14,12 +14,16 @@ namespace GigHub.Controllers
         private readonly ApplicationDbContext _context;
         private readonly AttendanceRepository _attendanceRepository;
         private readonly GigRepository _gigRepository;
+        private readonly FollowingRepository _followingRepository;
+        private readonly GenreRepository _genreRepository;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
             _attendanceRepository = new AttendanceRepository(_context);
             _gigRepository = new GigRepository(_context);
+            _followingRepository = new FollowingRepository(_context);
+            _genreRepository = new GenreRepository(_context);
         }
 
         [Authorize]
@@ -126,11 +130,13 @@ namespace GigHub.Controllers
                 return View("GigForm", gigFormViewModel);
             }
 
-            var userId = User.Identity.GetUserId();
+            var gig = _gigRepository.GetGigWithAttendees(gigFormViewModel.Id);
 
-            var gig = _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
-                .Single(g => g.Id == gigFormViewModel.Id && g.ArtistId == userId);
+            if (gig == null)
+                return HttpNotFound();
+
+            if (gig.ArtistId != User.Identity.GetUserId())
+                return new HttpUnauthorizedResult();
 
             gig.Modify(gigFormViewModel.GetDateTime(), gigFormViewModel.Venue, gigFormViewModel.Genre);
 
