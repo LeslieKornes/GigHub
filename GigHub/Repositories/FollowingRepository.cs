@@ -1,4 +1,5 @@
 ﻿using GigHub.Models;
+using System.Linq;
 
 namespace GigHub.Repositories
 {
@@ -10,5 +11,12 @@ namespace GigHub.Repositories
         {
             _context = context;
         }
+
+        public Following GetFollowing(string followerId, string followeeId)
+        {
+            return _context.Followings
+                .SingleOrDefault(f => f.FolloweeId == followeeId && f.FollowerId == followerId);
+        }
+
     }
 }
