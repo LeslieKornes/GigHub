@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GigHub.Models
+namespace GigHub.Core.Models
 {
     //ALTERNATIVELY THIS CLASS COULD BE CALLED RELATIONSHIP
     public class Following
