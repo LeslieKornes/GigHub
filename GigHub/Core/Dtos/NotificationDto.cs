@@ -1,7 +1,7 @@
 ﻿using System;
 using GigHub.Core.Models;
 
-namespace GigHub.Controllers.Dtos
+namespace GigHub.Core.Dtos
 {
     public class NotificationDto
     {

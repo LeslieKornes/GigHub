@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using GigHub.Controllers.Dtos;
+using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 using GigHub.Persistence;
 

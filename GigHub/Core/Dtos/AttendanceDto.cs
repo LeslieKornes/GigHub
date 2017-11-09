@@ -1,4 +1,4 @@
-namespace GigHub.Dtos
+namespace GigHub.Core.Dtos
 {
     //DATA TRANSFER OBJECT - ARCHITECTURAL PATTERN TO SEND DATA
     //ACROSS PROCESSES

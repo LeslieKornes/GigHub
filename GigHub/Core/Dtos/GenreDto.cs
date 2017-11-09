@@ -1,4 +1,4 @@
-﻿namespace GigHub.Controllers.Dtos
+﻿namespace GigHub.Core.Dtos
 {
     public class GenreDto
     {

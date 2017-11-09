@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GigHub.Controllers.Dtos;
+using GigHub.Core.Dtos;
 using GigHub.Core.Models;
 
 namespace GigHub.App_Start
