@@ -4,9 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
-using GigHub.Persistence;
 
-namespace GigHub.Repositories
+namespace GigHub.Persistence.Repositories
 {
     public class GigRepository : IGigRepository
     {
@@ -20,7 +19,7 @@ namespace GigHub.Repositories
         public Gig GetGigWithAttendees(int gigId)
         {
             return _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .Include(g => Enumerable.Select<Attendance, ApplicationUser>(g.Attendances, a => a.Attendee))
                 .SingleOrDefault(g => g.Id == gigId);
         }
 
