@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.Linq;
-using System.Web;
 
-namespace GigHub.ViewModels
+namespace GigHub.Core.ViewModels
 {
     public class FutureDate : ValidationAttribute
     {
