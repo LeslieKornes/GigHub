@@ -14,28 +14,28 @@ namespace GigHub.Core.Models
         [Required]
         public Gig Gig { get; private set; }
 
-        private Notification()
+        protected Notification()
         {
         }
 
-        private Notification(Gig gig, NotificationType type)
+        private Notification(NotificationType type, Gig gig)
         {
             if (gig == null)
-                throw new ArgumentNullException(nameof(gig));
+                throw new ArgumentNullException("gig");
 
-            DateTime = DateTime.Now;
-            Gig = gig;
             Type = type;
+            Gig = gig;
+            DateTime = DateTime.Now;
         }
 
         public static Notification GigCreated(Gig gig)
         {
-            return new Notification(gig, NotificationType.GigCreated);
+            return new Notification(NotificationType.GigCreated, gig);
         }
 
         public static Notification GigUpdated(Gig newGig, DateTime originalDateTime, string originalVenue)
         {
-            var notification = new Notification(newGig, NotificationType.GigUpdated);
+            var notification = new Notification(NotificationType.GigUpdated, newGig);
             notification.OriginalDateTime = originalDateTime;
             notification.OriginalVenue = originalVenue;
 
@@ -44,7 +44,7 @@ namespace GigHub.Core.Models
 
         public static Notification GigCanceled(Gig gig)
         {
-            return new Notification(gig, NotificationType.GigCanceled);
+            return new Notification(NotificationType.GigCanceled, gig);
         }
     }
 }
